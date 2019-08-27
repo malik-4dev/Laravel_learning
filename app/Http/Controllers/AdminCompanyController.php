@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Http\Requests\CompanyRequest;
 use App\Notifications\ActionSMS;
+use App\Notifications\CompanyCreated;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,7 +93,9 @@ class AdminCompanyController extends Controller
             $company=$user->companies()->create($input);
            // $company=Company::orderBy('id','DESC')->first();
             $users=User::find(1);
+            //for builtin database-email-sms-notifications
             $users->notify(new ActionEmail($company));
+            $users->notify(new CompanyCreated());
 
 
             //   Session::flash('create_company','user has been created');

@@ -2,14 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Company;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
 
-class ActionEmail extends Notification
+class CompanyCreated extends Notification
 {
     use Queueable;
 
@@ -18,12 +16,9 @@ class ActionEmail extends Notification
      *
      * @return void
      */
-    public $companies;
-    public function __construct(Company $company)
+    public function __construct()
     {
-        $this->companies=$company;
         //
-        //$this->company=$company;
     }
 
     /**
@@ -34,7 +29,7 @@ class ActionEmail extends Notification
      */
     public function via($notifiable)
     {
-        return [/*'mail',*/'database'/*,'nexmo'*/];
+        return ['mail'];
     }
 
     /**
@@ -45,11 +40,11 @@ class ActionEmail extends Notification
      */
     public function toMail($notifiable)
     {
+        /*$url=url('/home');*/
         return (new MailMessage)
-            ->from('changelog@crm.com', 'CRM')
-            ->line('someone create a new company. If it is not you go reset your password. ')
-            ->action('Click Here To Reset Password', url('/password/reset'))
-            ->line('If it is You Discard this email!');    }
+            ->subject('Company Created')
+            ->markdown('mail.company.create'/*,['url'=>$url]*/);
+    }
 
     /**
      * Get the array representation of the notification.
@@ -61,13 +56,6 @@ class ActionEmail extends Notification
     {
         return [
             //
-            'company_id'=>$this->companies->id,
-            'company_name'=>$this->companies->name
         ];
-    }
-    public function toNexmo($notifiable)
-    {
-        return (new NexmoMessage)
-            ->content($this->companies->name)->from('+92 303 4346076');
     }
 }
