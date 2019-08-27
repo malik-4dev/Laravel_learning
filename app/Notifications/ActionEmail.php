@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\Notifications\Messages\SlackMessage;
 
 class ActionEmail extends Notification
 {
@@ -34,7 +35,7 @@ class ActionEmail extends Notification
      */
     public function via($notifiable)
     {
-        return [/*'mail',*/'database'/*,'nexmo'*/];
+        return ['mail','database',/*'slack'*//*,'nexmo'*/];
     }
 
     /**
@@ -69,5 +70,10 @@ class ActionEmail extends Notification
     {
         return (new NexmoMessage)
             ->content($this->companies->name)->from('+92 303 4346076');
+    }
+    public function toSlack($notifiable)
+    {
+        return (new SlackMessage)
+            ->content('Hell to slack notification!');
     }
 }

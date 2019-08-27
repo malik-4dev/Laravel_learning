@@ -34,6 +34,10 @@ class User extends Authenticatable
 
         return "+923128984447";
     }
+    public function routeNotificationForSlack($notification)
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
 
     /**
      * The attributes that should be cast to native types.

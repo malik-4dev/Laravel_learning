@@ -95,10 +95,10 @@ class AdminCompanyController extends Controller
             $company=$user->companies()->create($input);
 
            // $company=Company::orderBy('id','DESC')->first();
-           // $users=User::find(1);
+           $users=User::find(1);
 
             //for builtin database-email-sms-notifications
-            //$users->notify(new ActionEmail($company));
+            $users->notify(new ActionEmail($company));
 
             //markdown notification
             //$users->notify(new CompanyCreated());
@@ -107,8 +107,11 @@ class AdminCompanyController extends Controller
             //$users->notify((new CompanyCreated())->delay(Carbon::now()->addSecond(30)));
 
             //queue using job
-            $jobs=(new SendNotifications())->delay(Carbon::now()->addSecond(30));
-            dispatch($jobs);
+          //  $jobs=(new SendNotifications())->delay(Carbon::now()->addSecond(30));
+            //dispatch($jobs);
+
+           // SendNotifications::dispatch()->delay(Carbon::now()->addSecond(30));
+            //SendNotifications::dispatchNow();
 
 
 
