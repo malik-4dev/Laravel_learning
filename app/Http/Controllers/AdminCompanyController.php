@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\CompanyRequest;
+use App\Jobs\SendNotifications;
 use App\Notifications\ActionSMS;
 use App\Notifications\CompanyCreated;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ActionEmail;
@@ -91,11 +93,23 @@ class AdminCompanyController extends Controller
 
             }
             $company=$user->companies()->create($input);
+
            // $company=Company::orderBy('id','DESC')->first();
-            $users=User::find(1);
+           // $users=User::find(1);
+
             //for builtin database-email-sms-notifications
-            $users->notify(new ActionEmail($company));
-            $users->notify(new CompanyCreated());
+            //$users->notify(new ActionEmail($company));
+
+            //markdown notification
+            //$users->notify(new CompanyCreated());
+
+            //queue delay
+            //$users->notify((new CompanyCreated())->delay(Carbon::now()->addSecond(30)));
+
+            //queue using job
+            $jobs=(new SendNotifications())->delay(Carbon::now()->addSecond(30));
+            dispatch($jobs);
+
 
 
             //   Session::flash('create_company','user has been created');

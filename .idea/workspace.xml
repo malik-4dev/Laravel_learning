@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2282a3fb-73d1-4b41-935c-9149faa8d3fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminCompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminCompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/ActionEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/ActionEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/menu1566566142b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/menu1566566246b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/CompanyCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/CompanyCreated.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +176,7 @@
       <workItem from="1566553736998" duration="13879000" />
       <workItem from="1566803494924" duration="14161000" />
       <workItem from="1566818298268" duration="88000" />
-      <workItem from="1566883252327" duration="3789000" />
+      <workItem from="1566883252327" duration="11745000" />
     </task>
     <servers />
   </component>
