@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Company;
+use App\Observers\CompanyObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -27,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        //register observer
+        Company::observe(CompanyObserver::class);
     }
 }

@@ -74,6 +74,6 @@ class ActionEmail extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-            ->content('Hell to slack notification!');
+            ->content('Hello to slack notification!');
     }
 }
